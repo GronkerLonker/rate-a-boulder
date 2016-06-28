@@ -14,6 +14,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride());
 
+/* Routing */
+
 app.get('/boulders', function (req, res) {
     console.log("Get boulders.");
     res.set('Content-Type', 'application/json');
@@ -61,10 +63,31 @@ app.get('*', function (req, res) {
     res.sendFile('./ui/' + fileName, serverOptions);
 });
 
-app.use(function(err, req, res, next) {
+/* Error handling */
+
+var logErrors = function (err, req, res, next) {
   console.error(err.stack);
-  res.status(500).send('Something broke!');
-});
+  next(err);
+}
+
+var clientErrorHandler = function (err, req, res, next) {
+  if (req.xhr) {
+    res.status(500).send({ error: 'Request failed!' });
+  } else {
+    next(err);
+  }
+}
+
+var errorHandler = function (err, req, res, next) {
+  if (res.headersSent) {
+    return next(err);
+  }
+  res.status(500);
+  res.render('error', { error: err });
+}
+app.use(logErrors);
+app.use(clientErrorHandler);
+app.use(errorHandler);
 
 app.listen(3000);
 console.log('Server started. Listening to port 3000');
