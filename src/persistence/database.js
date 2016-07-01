@@ -1,19 +1,19 @@
 'use strict';
 
-var lokijs = require('lokijs');
-var db = new lokijs('./data/rate-a-boulder.json');
+var Lokijs = require('lokijs');
+var db = new Lokijs('./data/rate-a-boulder.json');
 var bouldersCollection;
 
-db.loadDatabase({}, function () {
+db.loadDatabase({}, function() {
   // prepare collections and make them available
-  bouldersCollection = db.getCollection('boulders');
-  if (!bouldersCollection) {
-      bouldersCollection = db.addCollection('boulders');
-  }
+	bouldersCollection = db.getCollection('boulders');
+	if (!bouldersCollection) {
+		bouldersCollection = db.addCollection('boulders');
+	}
 });
 
 var getBouldersCollection = function() {
-  return bouldersCollection;
+	return bouldersCollection;
 };
 
 var save = function() {
