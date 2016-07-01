@@ -2,7 +2,9 @@
   "name": "rate-a-boulder",
   "version": "0.0.1",
   "scripts": {
-    "start": "node server.js"
+    "start": "node src/server.js",
+    "env": "env",
+    "lint": "eslint src"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
@@ -12,9 +14,7 @@
     "promise": "^7.1.1"
   },
   "devDependencies": {
-    "grunt": "^1.0.1",
-    "grunt-contrib-jshint": "^1.0.0",
-    "grunt-contrib-watch": "^1.0.0",
-    "grunt-express-server": "^0.5.3"
+    "eslint": "^2.13.1",
+    "eslint-config-google": "^0.6.0"
   }
 }
