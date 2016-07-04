@@ -1,6 +1,4 @@
-var world = function() {
-	return "World!";
-};
+const world = () => "World!";
 
 module.exports = {
 	world: world
