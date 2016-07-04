@@ -1,12 +1,13 @@
 'use strict';
 
+const path = require('path');
 var server = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-var boulders = require('./persistence/boulders.js');
+var boulders = require(path.join(__dirname, 'src', 'persistence', 'boulders.js'));
 
 var serverOptions = {
-	root: __dirname + '/'
+	root: __dirname
 };
 
 var app = server();
@@ -56,17 +57,29 @@ app.put('/boulders/mock', function(req, res) {
 	}
 });
 
+/* JSPM module resources */
+
+app.get('/jspm_packages/*', function(req, res) {
+	res.sendFile(req.url, serverOptions);
+});
+
+app.get('/config.js', function(req, res) {
+	res.sendFile(req.url, serverOptions);
+});
+
+/* static ui resources */
+
 app.get('*', function(req, res) {
 	req.url = req.url.replace(/\?.*/, '');
 	var fileName = req.url || 'index.html';
 	console.log(fileName);
-	res.sendFile('./ui/' + fileName, serverOptions);
+	res.sendFile(path.join('ui', fileName), serverOptions);
 });
 
 /* Error handling */
 
 var logErrors = function(err, req, res, next) {
-	console.error(err.stack);
+	console.error(err.stack, req.url);
 	next(err);
 };
 

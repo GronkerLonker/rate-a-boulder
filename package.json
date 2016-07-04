@@ -6,7 +6,8 @@
     "url": "https://github.com/GronkerLonker/rate-a-boulder.git"
   },
   "scripts": {
-    "start": "node src/server.js",
+    "prestart": "npm run lint",
+    "start": "node server.js",
     "env": "env",
     "lint": "eslint src"
   },

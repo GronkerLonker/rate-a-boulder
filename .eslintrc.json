@@ -1,6 +1,7 @@
 {
     "extends": "google",
     "rules": {
-		"indent": ["error", "tab"]
+		"indent": ["error", "tab"],
+		"max-len": ["warn", 120]
 	}
 }
