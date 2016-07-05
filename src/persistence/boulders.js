@@ -1,6 +1,6 @@
 'use strict';
 
-var db = require('./database.js');
+import db from './database.js';
 
 var update = function(name, boulder) {
 	if (!name || !boulder.name) {
