@@ -6,12 +6,16 @@
     "url": "https://github.com/GronkerLonker/rate-a-boulder.git"
   },
   "scripts": {
+    "clean:ui" : "",
+    "clean:server" : "",
     "clean": "rm -rf app",
     "//": "UI BUILD",
-    "lint:ui": "eslint public/js",
+    "lint:ui": "eslint public/js/src",
     "prebuild:ui": "npm run lint:ui",
-    "jspm": "jspm bundle src/entry bundle.js",
-    "build:ui": "cp -R ./public/. app",
+    "jspm": "jspm bundle src/hello app/bundle.js",
+    "postjspm": "cp -R public/js/jspm_packages app && cp public/js/config.js app",
+    "copy:assets":"cp -R ./public/assets app",
+    "build:ui": "npm run copy:assets && npm run jspm",
     "//": "SERVER BUILD",
     "lint:server": "eslint src",
     "prebuild:server": "npm run lint:server",
@@ -55,6 +59,9 @@
       "babel": "npm:babel-core@^5.8.24",
       "babel-runtime": "npm:babel-runtime@^5.8.24",
       "core-js": "npm:core-js@^1.1.4"
-    }
+    },
+    "directories": { 
+      "baseURL": "public/js" 
+    }  
   }
 }

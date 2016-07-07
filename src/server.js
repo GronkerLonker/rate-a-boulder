@@ -59,7 +59,11 @@ app.put('/boulders/mock', function(req, res) {
 
 /* Client JavaScript and JSPM module resources */
 
-app.get('/js/*', function(req, res) {
+app.get('/bundle.js', function(req, res) {
+	res.sendFile(req.url, serverOptions);
+});
+
+app.get('/bundle.js.map', function(req, res) {
 	res.sendFile(req.url, serverOptions);
 });
 
