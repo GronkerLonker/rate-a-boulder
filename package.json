@@ -27,7 +27,7 @@
     "restart:server": "npm run build:server && npm run start",
     "precomplete": "npm run build",
     "complete": "npm run start",
-    "watch:ui": "watch 'npm run build:ui' ./public",
+    "watch:ui": "watch 'npm run build:ui && echo === watching ==='  ./public/assets ./public/js/src --wait=1",
     "env": "env"
   },
   "dependencies": {
@@ -49,7 +49,11 @@
     "directories": {
       "baseURL": "public/js"
     },
-    "dependencies": {},
+    "dependencies": {
+      "immstruct": "npm:immstruct@^2.0.0",
+      "omniscient": "npm:omniscient@^4.1.1",
+      "react": "npm:react@^15.2.0"
+    },
     "devDependencies": {
       "babel": "npm:babel-core@^5.8.24",
       "babel-runtime": "npm:babel-runtime@^5.8.24",
