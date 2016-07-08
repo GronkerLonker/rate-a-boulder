@@ -12,7 +12,7 @@
     "//": "NODE ENV HELPER",
     "lint:ui": "eslint public/js/src",
     "prebuild:ui": "npm run lint:ui",
-    "jspm": "jspm install && jspm bundle src/hello app/bundle.js",
+    "jspm": "jspm install && jspm bundle src/tavern app/bundle.js",
     "postjspm": "cp -R public/js/jspm_packages app && cp public/js/config.js app",
     "copy:assets": "cp -R ./public/assets app",
     "build:ui": "npm run copy:assets && npm run jspm",
