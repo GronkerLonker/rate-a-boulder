@@ -1,3 +1,9 @@
 language: node_js
-node_js:
-  "6"
+node_js: '6'
+env:
+  global:
+    secure: Lb3g1Go65zbdiU/MOJmNfS+KScFD8MwAAax6h+nihhppsMs3d/AyJ5sd1KKiYg3Ni1EO8KFl+U6x9X74TZ4xYlsV9p3OMB38bug8zbuZTWBPc86LPCFDS4btzuq+NlHnZRm9CKKoOuOVenUfiRn/4dr5b7sCNfX5Xt4M/nYlpl3sSMeDQkJTuh4qiFukcWkobkxgAIG7lFkobmIVqI6nKX3VNsyBvTLGBpKaVPTpyDVyxS0lRh+oi19VLaHp0Ya7SvUY1Fa9GlkaGev/GP8++3PGNzJNyU1NbZ6b1YV64IcQf9QcI4Uw11My4nZDBVvYp9dWVev3jVQlo285CLN7IywIsOoZhNjBpf/JwJt8eaSdmNi6CMqtlNcYTJ5isQZ55a4+i7GqqW39L/zKMfVaiY9/l/w1/gy8oStSJaPc2rk8/Tac61fL+ovno8L8uhT99bLqH7cnkQUXMyvm0oFrICvzzXTj2+ngvoIK0P6zxZRdenf9m1BS3GfurtkZ63yhe4as/clgdChkeCnOMY1ZUDFDq0z9nM5u2heFU1d/IPOsrxd8qiRPDIaGFsxzt9BY3FQVjrB31YxvXhnNmXLJIqVNCMUDPHCRA4Os1+WdmKXC9rCfe8hJByEUgvDH3X/yjuwTmhVX+qbWe3Us8Ba4I2H+eG0z7hMSty6RT66YZTM=
+
+before_install:
+- npm install -g jspm
+- jspm config registries.github.auth $JSPM_GITHUB_AUTH_TOKEN
