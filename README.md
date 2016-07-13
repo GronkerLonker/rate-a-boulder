@@ -4,10 +4,11 @@
 
     In a console go to this folder, all further actions expect you to work in this directory.
 
-**1. Install NodeJS with nvm**
+### install nvm 
 
-(how to install nvm?)
-nvm put this in the ~/.bashrc:
+https://github.com/creationix/nvm#install-script
+
+nvm puts this in the ~/.bashrc:
 
 <code>
 export NVM_DIR="/Users/rob/.nvm"
@@ -22,10 +23,22 @@ source ~/.bashrc
 
 then source the shell manually: . ~/.profile
 
-npm install
+### install node (version 6)
 
-**2. Run dev server**
+nvm install 6
 
-grunt dev
+### Build
+
+npm build
+
+### Testing
+
+npm test
+
+### Runing the server
+
+npm start
+
+to run a complete build and start the server: npm run complete
 
 Server listens to localhost:3000.
