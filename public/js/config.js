@@ -22,10 +22,11 @@ System.config({
   map: {
     "babel": "npm:babel-core@5.8.38",
     "babel-runtime": "npm:babel-runtime@5.8.38",
-    "core-js": "npm:core-js@1.2.6",
+    "core-js": "npm:core-js@1.2.7",
     "immstruct": "npm:immstruct@2.0.0",
     "omniscient": "npm:omniscient@4.1.1",
-    "react": "npm:react@15.2.0",
+    "react": "npm:react@15.2.1",
+    "react-dom": "npm:react-dom@15.2.1",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.4.1"
     },
@@ -105,7 +106,7 @@ System.config({
       "isarray": "npm:isarray@1.0.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:core-js@1.2.6": {
+    "npm:core-js@1.2.7": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2",
@@ -122,7 +123,7 @@ System.config({
       "iconv-lite": "npm:iconv-lite@0.4.13"
     },
     "npm:fbjs@0.8.3": {
-      "core-js": "npm:core-js@1.2.6",
+      "core-js": "npm:core-js@1.2.7",
       "immutable": "npm:immutable@3.8.1",
       "isomorphic-fetch": "npm:isomorphic-fetch@2.2.1",
       "loose-envify": "npm:loose-envify@1.2.0",
@@ -228,7 +229,7 @@ System.config({
       "lodash.isequal": "npm:lodash.isequal@3.0.4",
       "lodash.pick": "npm:lodash.pick@3.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2",
-      "react": "npm:react@15.2.0",
+      "react": "npm:react@15.2.1",
       "systemjs-json": "github:systemjs/plugin-json@0.1.2"
     },
     "npm:pako@0.2.8": {
@@ -253,7 +254,10 @@ System.config({
     "npm:punycode@1.3.2": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:react@15.2.0": {
+    "npm:react-dom@15.2.1": {
+      "react": "npm:react@15.2.1"
+    },
+    "npm:react@15.2.1": {
       "fbjs": "npm:fbjs@0.8.3",
       "loose-envify": "npm:loose-envify@1.2.0",
       "object-assign": "npm:object-assign@4.1.0",
