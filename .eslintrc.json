@@ -1,7 +1,26 @@
 {
-    "extends": "google",
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
+     "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
     "rules": {
 		"indent": ["error", "tab"],
 		"max-len": ["warn", 120]
-	}
+	},
+    "env": {
+        "browser": true,
+        "node": true
+    },
+
+    "globals": {
+        "React": true
+    },
+
+    "plugins": [
+        "react"
+    ]
 }

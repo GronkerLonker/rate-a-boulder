@@ -6,7 +6,9 @@ const BoulderList = React.createClass(
 	{
 		render: function() {
 			return (
-				React.createElement('div', {className: "boulderList"}, "THE list!")
+				<div className="boulder-list">
+					THE list!
+				</div>
 			);
 		}
 	}

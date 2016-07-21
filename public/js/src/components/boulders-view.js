@@ -6,8 +6,9 @@ import {BoulderList} from './boulder-list.js';
 var BouldersView = React.createClass({displayName: 'BouldersView',
 	render: function() {
 		return (
-			React.createElement('div', {className: "boulders-view"}, React.createElement(BoulderList)
-			)
+			<div className="boulders-view">
+				<BoulderList />
+			</div>
 		);
 	}
 });
