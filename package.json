@@ -6,8 +6,8 @@
     "url": "https://github.com/GronkerLonker/rate-a-boulder.git"
   },
   "config": {
-  	"distFilesJspm": "app/config.js app/bundle* app/jspm_packages",
-  	"distFilesAssets": "app/assets"
+    "distFilesJspm": "app/config.js app/bundle* app/jspm_packages",
+    "distFilesAssets": "app/assets"
   },
   "scripts": {
     "// CLEANING": "",
@@ -42,7 +42,7 @@
     "precomplete": "npm run test",
     "complete": "npm run start",
     "// WATCHING": "",
-    "watch:ui": "watch 'npm run rebuild:ui && echo === watching ==='  ./public/assets ./public/js/src --wait=1",
+    "watch:ui": "watch 'npm run rebuild:ui && date +\"%T\" && echo === watching ==='  ./public/assets ./public/js/src --wait=1",
     "// NODE ENV HELPER": "",
     "env": "env"
   },
@@ -68,7 +68,8 @@
     "dependencies": {
       "immstruct": "npm:immstruct@^2.0.0",
       "omniscient": "npm:omniscient@^4.1.1",
-      "react": "npm:react@^15.2.0"
+      "react": "npm:react@^15.2.0",
+      "react-dom": "npm:react-dom@^15.2.1"
     },
     "devDependencies": {
       "babel": "npm:babel-core@^5.8.24",
