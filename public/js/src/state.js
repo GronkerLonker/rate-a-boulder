@@ -1,12 +1,17 @@
 'use strict';
 
 import immstruct from 'immstruct';
+import {allBoulders} from './api.js';
 
-export const boulders = immstruct({
+var boulders = immstruct({
 	search: '',
-	boulders: [
-		{title: 'Jade', description: 'Super cool'},
-		{title: 'Lucid Dreaming', description: 'Yay get high'},
-		{title: 'Action Directe', description: 'Ouch'}
-	]
+	boulders: [{title: 'NOINIT', description: 'Initialization didn\'t happen yet'}]
 });
+
+const refreshBoulders = function() {
+	boulders.cursor('boulders').update(allBoulders);
+};
+
+refreshBoulders();
+
+export {boulders};
