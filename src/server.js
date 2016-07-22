@@ -83,14 +83,14 @@ app.get('/config.js', function(req, res) {
 app.get('*', function(req, res) {
 	req.url = req.url.replace(/\?.*/, '');
 	var fileName = req.url || 'index.html';
-	log.info(fileName);
+	log.info({requestedFile: fileName});
 	res.sendFile(path.join('assets', fileName), serverOptions);
 });
 
 /* Error handling */
 
 var logErrors = function(err, req, res, next) {
-	log.error(err.stack, req.url);
+	log.error({err: err, requestUrl: req.url});
 	next(err);
 };
 
