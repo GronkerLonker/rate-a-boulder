@@ -9,8 +9,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // import component from 'omniscient';
 // import * as state from './state.js';
-// import {allBoulders} from './api.js';
-import {BouldersView} from './components/boulders-view.js';
+import {BouldersView} from './components/boulders-view';
 
 const render = function render() {
 	ReactDOM.render(

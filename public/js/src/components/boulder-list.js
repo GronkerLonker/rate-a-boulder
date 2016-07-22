@@ -1,13 +1,21 @@
 'use strict';
 
 import React from 'react';
+import {Boulder} from 'src/components/boulder';
 
 const BoulderList = React.createClass(
 	{
+		propTypes : {
+			boulders: React.PropTypes.array.isRequired
+		},
 		render: function() {
+			var boulderEntries = this.props.boulders.map(
+				(boulder) => <Boulder name={boulder.name} description={boulder.description}/>
+			);
+
 			return (
 				<div className="boulder-list">
-					THE list!
+					{boulderEntries}
 				</div>
 			);
 		}
