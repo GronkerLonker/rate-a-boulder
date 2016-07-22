@@ -1,6 +1,7 @@
 {
   "name": "rate-a-boulder",
   "version": "0.0.1",
+  "license": "BSD-2-Clause",
   "repository": {
     "type": "git",
     "url": "https://github.com/GronkerLonker/rate-a-boulder.git"
@@ -36,7 +37,7 @@
     "pretest": "npm run setup && npm run build",
     "test": "echo success",
     "// RUN THE SERVER": "",
-    "start": "node app/server.js",
+    "start": "node app/server.js | bunyan",
     "restart:server": "npm run build:server && npm run start",
     "// ONE FOR ALL": "",
     "precomplete": "npm run test",
@@ -48,6 +49,7 @@
   },
   "dependencies": {
     "body-parser": "^1.15.2",
+    "bunyan": "^1.8.1",
     "express": "^4.14.0",
     "lokijs": "^1.3.19",
     "method-override": "^2.3.6",

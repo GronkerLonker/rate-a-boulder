@@ -1,10 +1,13 @@
 'use strict';
 
-const path = require('path');
-var server = require('express');
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
-var boulders = require(path.join(__dirname, 'persistence', 'boulders.js'));
+import path from 'path';
+import server from 'express';
+import bodyParser from 'body-parser';
+import methodOverride from 'method-override';
+import boulders from './persistence/boulders.js';
+import bunyan from 'bunyan';
+
+var log = bunyan.createLogger({name: 'rate-a-boulder-root'})
 
 var serverOptions = {
 	root: __dirname
@@ -18,7 +21,7 @@ app.use(methodOverride());
 /* Routing */
 
 app.get('/boulders', function(req, res) {
-	console.log("Get boulders.");
+	log.info('Get boulders.');
 	res.set('Content-Type', 'application/json');
 	res.send(boulders.getAll());
 });
@@ -80,14 +83,14 @@ app.get('/config.js', function(req, res) {
 app.get('*', function(req, res) {
 	req.url = req.url.replace(/\?.*/, '');
 	var fileName = req.url || 'index.html';
-	console.log(fileName);
+	log.info(fileName);
 	res.sendFile(path.join('assets', fileName), serverOptions);
 });
 
 /* Error handling */
 
 var logErrors = function(err, req, res, next) {
-	console.error(err.stack, req.url);
+	log.error(err.stack, req.url);
 	next(err);
 };
 
@@ -112,4 +115,4 @@ app.use(clientErrorHandler);
 app.use(errorHandler);
 
 app.listen(3000);
-console.log('Server started. Listening to port 3000');
+log.info('Server started. Listening to port 3000');
