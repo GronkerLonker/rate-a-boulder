@@ -42,3 +42,10 @@ npm start
 to run a complete build and start the server: npm run complete
 
 Server listens to localhost:3000.
+
+## Helpful additions for development
+
+### Sublime packages
+
+- DockBlockr
+- Babel
