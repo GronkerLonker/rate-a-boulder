@@ -1,38 +1,38 @@
 'use strict';
 
-import db from './database.js';
+import {getBouldersCollection,save} from './database.js';
 
-var update = function(name, boulder) {
+const update = (name, boulder) => {
 	if (!name || !boulder.name) {
 		return false;
 	}
 
-	var existingBoulder = db.getBouldersCollection().find({name: name});
+	var existingBoulder = getBouldersCollection().find({name: name});
 	if (existingBoulder && existingBoulder[0]) {
 		existingBoulder[0].name = boulder.name;
 		existingBoulder[0].description = boulder.description;
 
-		db.getBouldersCollection().update(existingBoulder[0]);
+		getBouldersCollection().update(existingBoulder[0]);
 	} else {
 		return false;
 	}
 };
 
-var insert = function(boulder) {
+const insert = (boulder) => {
 	if (!boulder || !boulder.name) {
 		return false;
 	}
 
-	var existingBoulder = db.getBouldersCollection().find({name: boulder.name});
+	var existingBoulder = getBouldersCollection().find({name: boulder.name});
 	if (existingBoulder && existingBoulder.length > 0) {
 		return false;
 	}
-	db.getBouldersCollection().insert(boulder);
-	db.save();
+	getBouldersCollection().insert(boulder);
+	save();
 	return true;
 };
 
-var storeMockData = function() {
+const storeMockData = () => {
 	var mockBoulder = {
 		name: "Lucid Dreaming",
 		description: "Cool new mock boulder."
@@ -43,13 +43,13 @@ var storeMockData = function() {
 	return true;
 };
 
-var getAll = function() {
-	return db.getBouldersCollection().data;
+const getAll = () => { 
+	return getBouldersCollection().data;
 };
 
-module.exports = {
-	storeMockData: storeMockData,
-	insert: insert,
-	update: update,
-	getAll: getAll
+export {
+	storeMockData,
+	insert,
+	update,
+	getAll
 };

@@ -7,13 +7,13 @@ import methodOverride from 'method-override';
 import boulders from './persistence/boulders.js';
 import bunyan from 'bunyan';
 
-var log = bunyan.createLogger({name: 'rate-a-boulder-root'})
+const log = bunyan.createLogger({name: 'rate-a-boulder-root'})
 
-var serverOptions = {
+const serverOptions = {
 	root: __dirname
 };
 
-var app = server();
+const app = server();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride());
@@ -89,12 +89,12 @@ app.get('*', function(req, res) {
 
 /* Error handling */
 
-var logErrors = function(err, req, res, next) {
+const logErrors = (err, req, res, next) => {
 	log.error({err: err, requestUrl: req.url});
 	next(err);
 };
 
-var clientErrorHandler = function(err, req, res, next) {
+const clientErrorHandler = (err, req, res, next) => {
 	if (req.xhr) {
 		res.status(500).send({error: 'Request failed!'});
 	} else {
@@ -102,7 +102,7 @@ var clientErrorHandler = function(err, req, res, next) {
 	}
 };
 
-var errorHandler = function(err, req, res, next) {
+const errorHandler = (err, req, res, next) => {
 	if (res.headersSent) {
 		return next(err);
 	}

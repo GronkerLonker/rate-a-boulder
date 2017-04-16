@@ -49,3 +49,32 @@ Server listens to localhost:3000.
 
 - DockBlockr
 - Babel
+
+
+
+
+setup > clean > lint > build > test > bundle (assets, ui, server) > start
+
+    "restart:server": "npm run build:server && npm run start",
+
+
+    "clean:ui": "rm -rf $npm_package_config_distFilesAssets $npm_package_config_distFilesJspm",
+    "// UI BUILD": "",
+    "prebuild:ui": "npm run lint:ui",
+    "// UI REBUILD ONLY UI SPECIFIC FILES": "",
+    "prerebuild:ui": "npm run clean:ui",
+    "rebuild:ui": "npm run build:ui",
+    "// SERVER BUILD": "",
+    "prebuild:server": "npm run lint:server",
+    "// APP BUILD": "",
+    "prebuild": "npm run clean",
+    "build": "npm run build:server && npm run build:ui",
+    "// TESTS": "",
+    "pretest": "npm run setup && npm run build",
+    "// ONE FOR ALL": "",
+    "precomplete": "npm run test",
+    "complete": "npm run start",
+    "// WATCHING": "",
+    "watch:ui": "watch 'npm run rebuild:ui && date +\"%T\" && echo === watching ==='  ./public/assets ./public/js/src --wait=1",
+    "// NODE ENV HELPER": "",
+    "env": "env"

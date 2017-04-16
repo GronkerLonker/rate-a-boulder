@@ -1,0 +1,5 @@
+--recursive 
+--require babel-polyfill 
+--compilers js:babel-register 
+--reporter mochawesome
+--reporter-options reportDir=build/reports,reportName=relax-box-unit-tests,inlineAssets=true,reportTitle='ReadySetMove_unit_tests',reportPageTitle='ReadySetMove'

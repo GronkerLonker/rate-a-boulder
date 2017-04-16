@@ -1,8 +1,8 @@
 'use strict';
 
-var Lokijs = require('lokijs');
-var db = new Lokijs('./data/rate-a-boulder.json');
-var bouldersCollection;
+const Lokijs = require('lokijs');
+const db = new Lokijs('./data/rate-a-boulder.json');
+let bouldersCollection;
 
 db.loadDatabase({}, function() {
   // prepare collections and make them available
@@ -12,18 +12,18 @@ db.loadDatabase({}, function() {
 	}
 });
 
-var getBouldersCollection = function() {
+const getBouldersCollection = () => {
 	return bouldersCollection;
 };
 
-var save = function() {
+const save = () => {
 	return db.saveDatabase();
 };
 
-module.exports = {
+export {
 	// hand out collections
-	getBouldersCollection: getBouldersCollection,
+	getBouldersCollection,
 	// …
 	// hand out db save etc. to abstract from implementation
-	save: save
+	save
 };
