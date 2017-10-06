@@ -4,10 +4,10 @@ import path from 'path';
 import server from 'express';
 import bodyParser from 'body-parser';
 import methodOverride from 'method-override';
-import boulders from './persistence/boulders.js';
+import * as exercises from './persistence/exercises.js';
 import bunyan from 'bunyan';
 
-const log = bunyan.createLogger({name: 'rate-a-boulder-root'})
+const log = bunyan.createLogger({name: 'ready-set-move-root', serializers: bunyan.stdSerializers})
 
 const serverOptions = {
 	root: __dirname
@@ -20,40 +20,46 @@ app.use(methodOverride());
 
 /* Routing */
 
-app.get('/boulders', function(req, res) {
-	log.info('Get boulders.');
+app.get('/rest/exercises', function(req, res) {
+	log.info('Get exercises.');
 	res.set('Content-Type', 'application/json');
-	res.send(boulders.getAll());
+	let allExercises = exercises.getAll();
+	log.debug('Got exercises:', allExercises);
+	if (!allExercises) {
+		res.status(404).end();
+	}
+	res.send(allExercises);
 });
 
-// add a new boulder
-app.post('/boulders', function(req, res) {
-	if (boulders.insert(req.body)) {
+// add a new exercise
+app.post('/rest/exercises', function(req, res) {
+	if (exercises.insert(req.body)) {
 		res.status(200).end();
 	} else {
 		res.status(409).end();
 	}
 });
 
-app.post('/boulders/mock', function(req, res) {
-	if (boulders.storeMockData()) {
-		res.status(200).end();
-	} else {
-		res.status(409).end();
-	}
-});
-
-// update an existing boulder
-app.put('/boulders/:name', function(req, res) {
-	if (boulders.update(req.params.name, req.body)) {
+// update an existing exercise
+app.put('/rest/exercises/:name', function(req, res) {
+	log.info('Updating exercise: %s', req.params.name);
+	if (exercises.update(req.params.name, req.body)) {
 		res.status(200).end();
 	} else {
 		res.status(404).end();
 	}
 });
 
-app.put('/boulders/mock', function(req, res) {
-	if (boulders.storeMockData()) {
+app.post('/rest/exercises/mock', function(req, res) {
+	if (exercises.storeMockData()) {
+		res.status(200).end();
+	} else {
+		res.status(409).end();
+	}
+});
+
+app.put('/rest/exercises/mock', function(req, res) {
+	if (exercises.storeMockData()) {
 		res.status(200).end();
 	} else {
 		res.status(404).end();
@@ -106,8 +112,7 @@ const errorHandler = (err, req, res, next) => {
 	if (res.headersSent) {
 		return next(err);
 	}
-	res.status(500);
-	res.render('error', {error: err});
+	res.status(500).send({error: err});
 };
 
 app.use(logErrors);

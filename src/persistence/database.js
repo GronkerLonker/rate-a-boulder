@@ -1,19 +1,25 @@
 'use strict';
 
-const Lokijs = require('lokijs');
+import bunyan from 'bunyan';
+import Lokijs from 'lokijs';
+
+const log = bunyan.createLogger({name: 'ready-set-move-database', serializers: bunyan.stdSerializers})
 const db = new Lokijs('./data/rate-a-boulder.json');
-let bouldersCollection;
+let exerciseCollection;
 
 db.loadDatabase({}, function() {
-  // prepare collections and make them available
-	bouldersCollection = db.getCollection('boulders');
-	if (!bouldersCollection) {
-		bouldersCollection = db.addCollection('boulders');
+	log.info("load database")
+	// prepare collections and make them available
+	exerciseCollection = db.getCollection('exercises');
+	if (!exerciseCollection) {
+		log.info("exercise collection not existent, creating it")
+		exerciseCollection = db.addCollection('exercises');
 	}
 });
 
-const getBouldersCollection = () => {
-	return bouldersCollection;
+const getExerciseCollection = () => {
+	log.info("Get exercise collection")
+	return exerciseCollection;
 };
 
 const save = () => {
@@ -22,7 +28,7 @@ const save = () => {
 
 export {
 	// hand out collections
-	getBouldersCollection,
+	getExerciseCollection,
 	// …
 	// hand out db save etc. to abstract from implementation
 	save

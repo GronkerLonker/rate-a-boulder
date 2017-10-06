@@ -9,7 +9,7 @@
     },
     "rules": {
 		"indent": ["error", "tab"],
-		"max-len": ["warn", 120]
+		"max-len": ["warn", 240]
 	},
     "env": {
         "browser": true,
