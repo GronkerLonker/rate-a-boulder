@@ -1,8 +1,8 @@
 'use strict';
 
 import React from 'react';
-import {BoulderList} from 'src/components/boulder-list';
-import {allBoulders} from 'src/api';
+import {BoulderList} from './boulder-list';
+import {allBoulders} from '../api';
 
 var BouldersView = React.createClass({displayName: 'BouldersView',
 	render: function() {

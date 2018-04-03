@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import {Boulder} from 'src/components/boulder';
+import {Boulder} from './boulder';
 
 const BoulderList = React.createClass(
 	{

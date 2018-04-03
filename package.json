@@ -6,31 +6,28 @@
     "type": "git",
     "url": "https://github.com/GronkerLonker/rate-a-boulder.git"
   },
-  "config": {
-    "distFilesJspm": "app/config.js app/bundle* app/jspm_packages",
-    "distFilesAssets": "app/assets"
-  },
   "scripts": {
     "// SETUP": "",
-    "setup": "jspm install && npm prune && npm install -p",
+    "setup": "npm prune && npm install -p",
     "// CLEANING": "",
-    "clean": "rm -rf build",
+    "clean": "rm -rf build && mkdir -p build",
     "// LINTING": "",
     "lint:ui": "eslint public/js/src",
     "lint:server": "eslint src",
     "lint": "npm run lint:ui && npm run lint:server",
     "// BUILD": "",
-    "build:ui": "jspm bundle src/tavern build/bundle.js",
+    "build:ui:prod": "browserify public/js/src/tavern.js -t [ babelify --presets [ env] ] -g [ envify --NODE_ENV production ] -g uglifyify | uglifyjs --compress --mangle > build/bundle.js",
+    "build:ui:dev": "browserify public/js/src/tavern.js -o build/bundle-debug.js -t [ babelify --presets [ env] ]",
+    "build:ui": "npm run build:ui:dev",
     "build:server": "./node_modules/.bin/babel src -d build",
     "build": "npm run build:ui && npm run build:server",
     "// TESTS": "",
     "test:unit": "mocha",
     "test": "npm run test:unit",
     "// APP BUNDLING": "",
-    "copy:ui": "cp -R public/js/jspm_packages app && cp public/js/config.js app",
     "copy:assets": "cp -R ./public/assets app",
     "copy:build": "cp -R build/* app",
-    "bundle": "npm run copy:ui && npm run copy:assets && npm run copy:build",
+    "bundle": "npm run copy:assets && npm run copy:build",
     "// RUN THE SERVER": "",
     "start": "node app/server.js | bunyan",
     "// ONE FOR ALL": "",
@@ -43,38 +40,29 @@
     "lokijs": "^1.3.19",
     "method-override": "^2.3.6",
     "promise": "^7.1.1",
-    "react-redux": "^4.4.5"
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.10.1",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
     "babel-polyfill": "^6.23.0",
-    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
     "babel-register": "^6.24.1",
+    "babelify": "^8.0.0",
+    "browserify": "^14.4.0",
     "chai": "^3.5.0",
+    "envify": "^4.1.0",
     "eslint": "^2.13.1",
     "eslint-config-google": "^0.6.0",
     "eslint-plugin-react": "^5.2.2",
-    "jspm": "^0.16.39",
     "mocha": "^3.2.0",
     "mochawesome": "^2.0.5",
     "sinon": "^2.1.0",
+    "uglify-js": "^2.8.29",
+    "uglifycss": "0.0.27",
+    "uglifyify": "^4.0.5",
     "watch": "^0.19.1"
-  },
-  "jspm": {
-    "directories": {
-      "baseURL": "public/js"
-    },
-    "dependencies": {
-      "immstruct": "npm:immstruct@^2.0.0",
-      "omniscient": "npm:omniscient@^4.1.1",
-      "react": "npm:react@^15.2.0",
-      "react-dom": "npm:react-dom@^15.2.1",
-      "react-redux": "npm:react-redux@^4.4.5"
-    },
-    "devDependencies": {
-      "babel": "npm:babel-core@^5.8.24",
-      "babel-runtime": "npm:babel-runtime@^5.8.24",
-      "core-js": "npm:core-js@^1.1.4"
-    }
   }
 }
